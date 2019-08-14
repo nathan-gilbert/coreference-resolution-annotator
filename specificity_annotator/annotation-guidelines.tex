@@ -1,0 +1,95 @@
+% File Name : annotation-guidelines.tex
+% Purpose :
+% Creation Date : 08-16-2013
+% Last Modified : Fri 11 Oct 2013 02:58:10 PM MDT
+% Created By : Nathan Gilbert
+%
+\documentclass[letterpaper,12pt]{article}
+\usepackage{amssymb,latexsym,amsmath,multirow,graphicx}
+\usepackage[top=1.0in, bottom=1.0in, left=1.0in, right=1.0in,nohead,nofoot]{geometry}
+\renewcommand{\labelenumii}{\arabic{enumii}.}
+\begin{document}
+
+\begin{center}
+\textbf{Noun Phrase Specificity Annotation Guidelines}\\
+Version 2.0
+\end{center}
+
+\begin{enumerate}
+  \item \emph{Introduction}
+
+In this annotation task, the term ``specificity'' is a measure of a noun's ability (or inability) to refer to multiple distinct entities.
+A very specific noun may only refer to a single entity, while a very general noun can refer to many different entities.
+Proper names are very specific, e.g. \emph{Barack Obama}. 
+Many common nouns are semantically general, such as \emph{man} or \emph{company}, and the number of entities that these nouns may refer to is very high.
+
+This annotation work will divide all nouns in a corpus into different categories of specificity and label some nouns with a semantic type.
+	 
+	 \item \emph{Semantic Types}: The set of semantic types to be considered in this annotation work includes: \{Organization, Person, Animal, Plant, Location, Date, Disease, Event, Building, Vehicle, Physical-Object, Number and Abstract\}
+
+	  Semantic type definitions:
+	  \begin{description}
+			\item[Organization] - An organized body of people with a particular purpose, e.g. a company, society/government, association.
+			\item[Person] - A single human being, or unorganized groups of people, such as ``people''or ``friends''.
+			\item[Animal] - A member of the animal kingdom (mammals, reptiles, birds, fish, insects) with the exception of humans.
+			\item[Plant] - A member of the plant kingdom including fungi.
+			\item[Location] - A geographic region such as ``country''or ``town''. Multi-building complexes should be listed as a location as well, such as ``university'' or ``airport''.
+			\item[Disease] - A disease, virus or symptoms of such that affect persons, animals or plants. 
+			\item[Event] - An occurrence or action performed by persons or natural force. 
+			\item[Building] - A single man-made structure such as ``house'',``church'', ``schoolhouse''.
+			\item[Vehicle] - The set of mechanical/non-living objects that serve as transportation for persons, animals or goods.
+			\item[Physical-Object] - The set of physical objects that are not previously covered.
+			\item[Abstract] - Non-physical concepts such as ``thought'' or ``feeling''.
+			\item[Date/Time] - A date or measurement of time.
+			\item[Number] - a number, quantity, percentage, units or a fraction.
+			\item[N/A] - A catch-all for entities that do not fit in any of the preceding types. Meronyms of the types listed above may be placed here if no other type suffices. 
+	  \end{description}
+
+	\item \emph{Specificity Categories}: A single word may have multiple meanings. The word ``bank'' can be a financial institution or the earth beside a river. Polysemy is related, but not the same as generality in this case. Take the word ``maker'', which could refer to a company, a person or even a honey-bee, but its meaning is consistent throughout each entity type. In this task, we are attempting to discern between words that have strong semantic ties such as ``lawyer'' (which is strongly associated to {\sc Person}) and those that are semantically general such as ``maker'' (which could easily refer to a {\sc Organization}, {\sc Person}, etc. Multiple labels are allowed for polysemous nouns, try to select labels that are primarily relevant in the given domain. \textbf{Do not give a noun more than 2 labels.} Use the 5 most common noun phrases as a guide to the sense(s) of the given noun.
+
+	  %If it is hard to come up with an example where a noun's meaning crosses semantic types, then label it as one of the Type Noun categories below, otherwise choose from the following Untyped categories and make your best decision regarding is specificity.
+
+		\begin{description}
+			\item[Untyped Nouns] Nouns that do not clearly belong to a semantic type as described above. Select ``N/A'' for the Semantic Type of Untyped Nouns.
+
+			  \begin{enumerate}
+				 \item \textbf{Hollow Nouns} - The most general of nouns. These are nouns that could refer to a very large set of entities.  Hollow nouns do cross semantic type boundaries. This means that they relay no information regarding the semantic type of the entities they refer to. Hollow nouns such as ``it'', ``one'', ``they'', ``them'', ``entity'', ``object'' often merely suggest something is being spoken about, giving little information regarding what it ``is''. 
+				 \item \textbf{Transient Nouns} - Transients are nouns that are used to identify entities temporarily such as ``ally'' or ``victim'' and are not unique to a semantic type. Transient nouns are a non-persistent characteristic of an entity, for example, a person or country is not typically known as an ``ally'' or ``victim'' their entire lives. They also indicate roles played in discrete actions. This set also contains nouns that denote a ranking or achievement not unique to a semantic type: ``(the) best'', ``(the ) worst'', ``(the) first'', ``(the) second'', etc.
+		 \end{enumerate}
+
+			\item[Typed nouns] Nouns that are clearly members of one of the predefined semantic types. 
+			  \begin{enumerate}
+				 \item \textbf{Semantic Type Identifiers} - In this level, nouns are labeled with a semantic type from Section 2 and could refer to a substantial portion of the entities found in that type.  In the semantic type {\sc Person}, the words ``person'', ``man'' and ``woman'' can be coreferent with large collections in this semantic type. The nouns ``virus'' and ``illness'' could refer to nearly every entity in the {\sc Disease} type.  These are nouns that refer to a large cross section of entities in a semantic type, but not every entity. For instance, the words ``man'' or ``woman''. Clearly, they are members of the {\sc Person} semantic type, and respectively correspond to a large cross-section of the entities within it. 
+					 The {\sc Location} semantic type would have Semantic Type Identifiers such as: ``location'', ``area'' and ``region'', and intrinsic nouns such as: ``country'', ``state'' and ``city''. As a general rule, if you believe that a noun could represent a large cross-section of the total entities in that semantic type, then label it as a Semantic Type Identifier. For instance, for the {\sc Organization} semantic type, nouns that represent a large cross section of entities could be enumerate as such: organization (obviously), government, company, etc.
+				 
+				 \item \textbf{Descriptors} These are nouns used to further differentiate between entities in a semantic type, they do not refer to a large cross-section of a semantic type and are further divisions of a Semantic Type Identifier. For the {\sc Location} example above, nouns such as ``capital'' and ``neighborhood'' are examples of Descriptor nouns.
+			  \end{enumerate}
+
+			\item[Unknown] Use this label only if a noun does not fit into any of the above categories. Please use this sparingly.
+		\end{description}
+	
+%TODO add a page of examples
+\newpage
+\begin{center}
+\textbf{Examples}\\
+\end{center}
+
+\begin{enumerate}
+  \item \textbf{Untyped Nouns} \\
+	  \begin{description}
+			\item[Hollow Nouns] it, they, them, one, entity, most, object, few, thing
+			\item[Transient Nouns] ally, counterpart, neighbor, victim, case, best, worst, top, bottom, first, second
+	  \end{description}
+
+	\item \textbf{Typed Nouns} \\
+	  \begin{description}
+		 \item[Semantic Type Identifiers] {\sc Organization:} company, organization, non-profit, government, army {\sc Person:} man, woman, person, human {\sc Location} region, area, location, country, state, city {\sc Animal} animal, mammal, bird, fish, reptile
+		 \item[Descriptor Nouns] {\sc Organization:} subsidiary, auto-maker {\sc Person} lawyer, president, terrorist
+	  \end{description}
+\end{enumerate}
+
+
+\end{enumerate}
+\end{document}
+
+
