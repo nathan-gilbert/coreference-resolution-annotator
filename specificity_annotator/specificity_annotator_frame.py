@@ -194,7 +194,7 @@ class AnnotatorFrame(wx.Frame):
 
     def setFileList(self, fl):
         inFile = open(fl, 'r')
-        self.fileList = filter(lambda x : x.startswith("#"), map(string.strip, inFile.readlines()))
+        self.fileList = [x for x in map(string.strip, inFile.readlines()) if x.startswith("#")]
 
     def writeAnnotations(self):
         outFile = open(self.dirName + "/" + self.annotFileName, 'w')
@@ -378,7 +378,7 @@ class AnnotatorFrame(wx.Frame):
                                 continue
                             npLines.append(line)
                 except:
-                    print "text file not found"
+                    print("text file not found")
                 #this should be all the nps from the file
                 self.readInNPs(npLines)
                 self._setupAnnotation()

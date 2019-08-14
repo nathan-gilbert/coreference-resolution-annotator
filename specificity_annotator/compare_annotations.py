@@ -34,7 +34,7 @@ def readInAnnots(lines):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print "Usage: %s <annots1> <annots2>" % (sys.argv[0])
+        print("Usage: %s <annots1> <annots2>" % (sys.argv[0]))
         sys.exit(1)
 
     lines = []
@@ -47,7 +47,7 @@ if __name__ == "__main__":
         lines.extend(inFile.readlines())
     annots2 = readInAnnots(lines)
 
-    sorted_keys = sorted(list(set(annots1.keys() + annots2.keys())))
+    sorted_keys = sorted(list(set(list(annots1.keys()) + list(annots2.keys()))))
     for key in sorted_keys:
         annot1 = annots1.get(key, [])
         annot2 = annots2.get(key, [])
@@ -66,8 +66,8 @@ if __name__ == "__main__":
             str1 = "{0}".format(', '.join(annot1))
             str2 = "{0}".format(', '.join(annot2))
 
-            print "-"*70
-            print "{0}\nAsheq {1}\nLalindra {2}".format(key, str1,
-                    str2)
+            print("-"*70)
+            print("{0}\nAsheq {1}\nLalindra {2}".format(key, str1,
+                    str2))
 
-    print "-"*70
+    print("-"*70)

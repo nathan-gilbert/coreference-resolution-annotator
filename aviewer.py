@@ -94,7 +94,7 @@ class AnnotatorViewerFrame(wx.Frame):
         lines = ''
         if (dlg.ShowModal() == wx.ID_OK):
             f = file(os.path.join(dlg.GetDirectory(), dlg.GetFilename()))
-            lines = map(string.strip, f.readlines())
+            lines = list(map(string.strip, f.readlines()))
         dlg.Destroy()
         self._readInAnnotations(lines)
         self.updateListCtrl()
@@ -151,7 +151,7 @@ class AnnotatorViewerFrame(wx.Frame):
             match = GENERIC.findall(line)
             if match != []:
                 #cycle over
-                print match
+                print(match)
             else:
                 tokens = line.split()
                 data_type = tokens[2]

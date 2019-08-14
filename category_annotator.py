@@ -30,8 +30,8 @@ def getSpecificNPs(annots):
 
 def writeOutCache(cache):
     cacheFile = open("/home/ngilbert/ace2v1-train-cache", 'w')
-    for text in cache.keys():
-        for sem in cache[text].keys():
+    for text in list(cache.keys()):
+        for sem in list(cache[text].keys()):
             cacheFile.write("%s:%s:%s\n" % (text, sem, cache[text][sem]))
     cacheFile.close()
 
@@ -105,7 +105,7 @@ if __name__ == '__main__':
         for annot in annots: #class2annots[sem]:
             text = annot.getText().lower().replace("\n", " ").strip()
             sem = annot.getATTR("GOLD_SEMANTIC")
-            if cache[text].has_key(sem):
+            if sem in cache[text]:
                 category = cache[text][sem]
                 annot.setProp("CATEGORY", category)
                 num += 1
@@ -113,11 +113,11 @@ if __name__ == '__main__':
             else:
                 #print to the screen, get answer from person
                 os.system("clear")
-                print "Doc %s: %d total annotations needed" % (f, needed_annotations)
-                print "%d.) %s : %s" % (num, annot.getText().replace("\n", " "), sem)
+                print("Doc %s: %d total annotations needed" % (f, needed_annotations))
+                print("%d.) %s : %s" % (num, annot.getText().replace("\n", " "), sem))
 
                 while True:
-                    answer = raw_input("Which category? [a=super, b=basic,c=sub, m=sub-modified, d=instance, s=skip] ")
+                    answer = input("Which category? [a=super, b=basic,c=sub, m=sub-modified, d=instance, s=skip] ")
                     if answer == "a":
                         category = "SUPER"
                         break

@@ -135,7 +135,7 @@ class AnnotatorFrame(wx.Frame):
 
     def setFileList(self, fl):
         inFile = open(fl, 'r')
-        self.fileList = filter(lambda x : x.startswith("#"), map(string.strip, inFile.readlines()))
+        self.fileList = [x for x in map(string.strip, inFile.readlines()) if x.startswith("#")]
 
     def writeAnnotations(self):
         try:
@@ -147,7 +147,7 @@ class AnnotatorFrame(wx.Frame):
                 outFile.write(line)
             outFile.close()
         except IOError:
-            print "Error, unable to write annotations file."
+            print("Error, unable to write annotations file.")
 
     def OnDelButton(self, e):
         index = self.list_box_left.GetFirstSelected()
@@ -158,7 +158,7 @@ class AnnotatorFrame(wx.Frame):
         self.writeAnnotations()
 
     def OnAddAnnotButton(self, e):
-        span = map(int, self.text_box_right.GetSelection())
+        span = list(map(int, self.text_box_right.GetSelection()))
         #print span
         new_text = self.fullText[span[0]:span[1]].replace("\n", " ")
         semantic = self.CLASS[self.SemRadioBox.GetSelection()]
@@ -315,7 +315,7 @@ class AnnotatorFrame(wx.Frame):
             #self.ShowPos()
             f.close()
         except:
-            print "text file not found"
+            print("text file not found")
             #self.PushStatusText("Error in opening file.", wx.SB_INFO)
 
         annotDirName = "annotations"

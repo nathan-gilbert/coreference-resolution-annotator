@@ -13,13 +13,12 @@ import specificity_utils
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print "Usage: %s <file-list>" % (sys.argv[0])
+        print("Usage: %s <file-list>" % (sys.argv[0]))
         sys.exit(0)
 
     files = []
     with open(sys.argv[1], 'r') as inFile:
-        files.extend(filter(lambda x : not x.startswith("#"),
-            inFile.readlines()))
+        files.extend([x for x in inFile.readlines() if not x.startswith("#")])
 
     heads = []
     for f in files:

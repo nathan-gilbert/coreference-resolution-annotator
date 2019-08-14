@@ -45,7 +45,7 @@ def read_in_annots(lines):
 def create_matrix(tags, matrix, annots1, annots2, sem=True):
     #cycle over decisions both annotators made and find the # of this class
     #they agree and disagree on
-    for key in annots1.keys():
+    for key in list(annots1.keys()):
         annot1 = annots1[key]
         annot2 = annots2[key]
 
@@ -88,7 +88,7 @@ def calc_kappa(matrix, n):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print "Usage: %s <trial#>" % (sys.argv[0])
+        print("Usage: %s <trial#>" % (sys.argv[0]))
         sys.exit(1)
 
     SEMANTIC_CLASSES = ("ORG",
@@ -120,7 +120,7 @@ if __name__ == "__main__":
         lines.extend(inFile.readlines())
     annots2 = read_in_annots(lines)
 
-    total_labels = len(annots1.keys())
+    total_labels = len(list(annots1.keys()))
     #make the decision matrix
     sem_matrix = numpy.zeros((len(SEMANTIC_CLASSES), len(SEMANTIC_CLASSES)))
     sem_matrix = create_matrix(SEMANTIC_CLASSES, sem_matrix, annots1, annots2)
@@ -129,6 +129,6 @@ if __name__ == "__main__":
     spec_matrix = numpy.zeros((len(SPECIFICITY), len(SPECIFICITY)))
     spec_matrix = create_matrix(SPECIFICITY, spec_matrix, annots1, annots2, False)
     spec_kappa  = calc_kappa(spec_matrix, total_labels)
-    print "sem kappa    : {0:4.2f}".format(sem_kappa)
-    print "spec kappa   : {0:4.2f}".format(spec_kappa)
-    print "average      : {0:4.2f}".format((spec_kappa+sem_kappa) / 2)
+    print("sem kappa    : {0:4.2f}".format(sem_kappa))
+    print("spec kappa   : {0:4.2f}".format(spec_kappa))
+    print("average      : {0:4.2f}".format((spec_kappa+sem_kappa) / 2))

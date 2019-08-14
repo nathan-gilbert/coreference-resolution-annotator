@@ -10,7 +10,7 @@ import re
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print "Usage: %s <asheq> <lalindra> <wordnetlist>" % (sys.argv[0])
+        print("Usage: %s <asheq> <lalindra> <wordnetlist>" % (sys.argv[0]))
         sys.exit(1)
 
     SPEC = re.compile('Specificity=\"([^"]*)\"')
@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     wordnet_files = []
     with open(sys.argv[3], 'r') as wnfiles:
-        wordnet_files.extend(filter(lambda x : not x.startswith("#"), wnfiles.readlines()))
+        wordnet_files.extend([x for x in wnfiles.readlines() if not x.startswith("#")])
 
     wn_spec_labels = {}
     wn_sem_labels  = {}
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         if match:
             sem = match.group(1)
 
-        if head not in annotator1_spec_labels.keys():
+        if head not in list(annotator1_spec_labels.keys()):
             annotator1_spec_labels[head] = spec
             annotator1_sem_labels[head] = sem
         else:
@@ -91,20 +91,20 @@ if __name__ == "__main__":
         if match:
             sem = match.group(1)
 
-        if head not in annotator2_spec_labels.keys():
+        if head not in list(annotator2_spec_labels.keys()):
             annotator2_spec_labels[head] = spec
             annotator2_sem_labels[head] = sem
         else:
             annotator2_spec_labels[head+"2"] = spec
             annotator2_sem_labels[head+"2"] = sem
 
-    keys = sorted(list(set(annotator1_sem_labels.keys() + annotator2_sem_labels.keys())))
+    keys = sorted(list(set(list(annotator1_sem_labels.keys()) + list(annotator2_sem_labels.keys()))))
     for key in keys:
-        print "{0:20} : {1:10} : {2:25} :: {3:10} : {4:25} :: {5:10} : {6}".format(key,
+        print("{0:20} : {1:10} : {2:25} :: {3:10} : {4:25} :: {5:10} : {6}".format(key,
                 annotator1_sem_labels.get(key, ""),
                 annotator1_spec_labels.get(key, ""),
                 annotator2_sem_labels.get(key, ""),
                 annotator2_spec_labels.get(key, ""),
                 wn_sem_labels.get(key, ""),
-                wn_spec_labels.get(key, ""))
+                wn_spec_labels.get(key, "")))
 

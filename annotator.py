@@ -8,7 +8,7 @@ import sys
 import wx
 
 from optparse import OptionParser
-from coref_annotator_frame import AnnotatorFrame
+from .coref_annotator_frame import AnnotatorFrame
 #from ptype_annotator_frame import AnnotatorFrame
 
 #TODO: Broken under winblows. The internal storage of text in TextCtrl boxes

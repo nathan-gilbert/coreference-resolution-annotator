@@ -132,7 +132,7 @@ class AnnotatorFrame(wx.Frame):
         outFile.close()
         
     def OnModButton(self, e):
-        span = map(int, self.text_box_right.GetSelection())
+        span = list(map(int, self.text_box_right.GetSelection()))
         self.modifier = self.fullText[span[0]:span[1]].replace("\n", " ")
         self.modLabel.SetLabel("Modifier: %s" % self.modifier)
         self.modLabel.Update()
@@ -144,7 +144,7 @@ class AnnotatorFrame(wx.Frame):
         self.writeAnnotations()
         
     def OnAddAnnotButton(self, e):
-        span = map(int, self.text_box_right.GetSelection())
+        span = list(map(int, self.text_box_right.GetSelection()))
         #print span
         new_text = self.fullText[span[0]:span[1]].replace("\n", " ")
         category = self.CATEGORY[self.TypeRadioBox.GetSelection()]
@@ -298,7 +298,7 @@ class AnnotatorFrame(wx.Frame):
                 #self.ShowPos()
                 f.close()
             except:
-                print "file not found"
+                print("file not found")
                 #self.PushStatusText("Error in opening file.", SB_INFO)
                 
             #try:

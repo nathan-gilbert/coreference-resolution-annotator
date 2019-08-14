@@ -17,17 +17,16 @@ from pyconcile.bar import ProgressBar
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print "Usage: %s <nouns_list> <file_list>" % (sys.argv[0])
+        print("Usage: %s <nouns_list> <file_list>" % (sys.argv[0]))
         sys.exit(1)
 
     heads = []
     with open(sys.argv[1], 'r') as headFile:
-        heads.extend(map(string.strip, headFile.readlines()))
+        heads.extend(list(map(string.strip, headFile.readlines())))
 
     files = []
     with open(sys.argv[2], 'r') as inFile:
-        files.extend(filter(lambda x : not x.startswith("#"),
-            inFile.readlines()))
+        files.extend([x for x in inFile.readlines() if not x.startswith("#")])
     prog = ProgressBar(len(files))
 
     heads2nps = defaultdict(list)
@@ -50,7 +49,7 @@ if __name__ == "__main__":
                     heads2nps[head].append(utils.textClean(np.getText()))
     sys.stderr.write("\r \r\n")
 
-    for head in heads2nps.keys():
+    for head in list(heads2nps.keys()):
         counts = {}
         definite = False
         for np in heads2nps[head]:
@@ -60,7 +59,7 @@ if __name__ == "__main__":
                 definite = True
                 continue
             counts[np] = counts.get(np, 0) + 1
-        sorted_nps = sorted(counts.iteritems(), key=operator.itemgetter(1),reverse=True)
+        sorted_nps = sorted(iter(counts.items()), key=operator.itemgetter(1),reverse=True)
 
         #print sorted_nps
         topN = []
@@ -73,4 +72,4 @@ if __name__ == "__main__":
             topN.append("the " + head)
 
         nps_txt = " | ".join(topN)
-        print "{0} => {1}".format(head, nps_txt)
+        print("{0} => {1}".format(head, nps_txt))

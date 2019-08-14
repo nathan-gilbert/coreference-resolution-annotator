@@ -10,7 +10,7 @@ import re
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print "Usage: %s <specificity-annots>" % (sys.argv[0])
+        print("Usage: %s <specificity-annots>" % (sys.argv[0]))
         sys.exit(1)
 
     SPEC = re.compile('Specificity=\"([^"]*)\"')
@@ -42,5 +42,5 @@ if __name__ == "__main__":
         if spec == "" or sem == "":
             continue
         else:
-            print "{0:20} : {1:15} : {2}".format(text, sem, spec)
+            print("{0:20} : {1:15} : {2}".format(text, sem, spec))
 
